@@ -30,15 +30,15 @@ var observe = module.exports = function(query, options) {
     var diff = process.hrtime(startTime);
     var duration = diff[0] * 1e3 + diff[1] * 1e-6;
     var statsColor = chalk.magenta;
-    var selectColor = chalk.cyan;
+    var queryColor = chalk.cyan;
 
     if (duration > opts.slow) {
       statsColor = chalk.red;
-      selectColor = chalk.bold.yellow;
+      queryColor = chalk.bold.yellow;
     }
 
     log(chalk.gray('SQL ') +
-      statsColor('(%sms~%srows) ') + selectColor('%s ') + chalk.gray('[%s]'),
+      statsColor('(%sms~%srows) ') + queryColor('%s ') + chalk.gray('[%s]'),
       duration.toFixed(1), result.rows.length,
       query.sql, query.args.join(', '));
   });
