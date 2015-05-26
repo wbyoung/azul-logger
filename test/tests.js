@@ -32,6 +32,7 @@ describe('logger', function() {
     query.emit('rawResult', {
       fields: [],
       rows: [],
+      client: {},
     });
 
     expect(spy).to.have.been.calledOnce;
@@ -39,7 +40,7 @@ describe('logger', function() {
     expect(format(spy)).to.include(chalk.styles.cyan.open);
     expect(format(spy)).to.not.include(chalk.styles.red.open);
     expect(format(spy)).to.not.include(chalk.styles.yellow.open);
-    expect(output(spy)).to.match(/SQL \(\d\.\dms~0rows\) select 1 \[\]/);
+    expect(output(spy)).to.match(/SQL \(\d\.\dms@\d~0rows\) select 1 \[\]/);
   });
 
   it('logs slow queries', function(done) {
@@ -56,6 +57,7 @@ describe('logger', function() {
       query.emit('rawResult', {
         fields: [],
         rows: [],
+        client: {},
       });
 
       expect(spy).to.have.been.calledOnce;
@@ -63,7 +65,7 @@ describe('logger', function() {
       expect(format(spy)).to.include(chalk.styles.yellow.open);
       expect(format(spy)).to.not.include(chalk.styles.magenta.open);
       expect(format(spy)).to.not.include(chalk.styles.cyan.open);
-      expect(output(spy)).to.match(/SQL \(\d\.\dms~0rows\) select 1 \[\]/);
+      expect(output(spy)).to.match(/SQL \(\d\.\dms@\d~0rows\) select 1 \[\]/);
       done();
     }, 5);
   });
@@ -83,9 +85,10 @@ describe('logger', function() {
     query.emit('rawResult', {
       fields: [],
       rows: [],
+      client: {},
     });
     expect(spy).to.have.been.calledOnce;
-    expect(output(spy)).to.match(/SQL \(\d\.\dms~0rows\) select 1 \[\]/);
+    expect(output(spy)).to.match(/SQL \(\d\.\dms@\d~0rows\) select 1 \[\]/);
   });
 
   it('observes duped queries', function() {
@@ -103,9 +106,10 @@ describe('logger', function() {
     query.emit('rawResult', {
       fields: [],
       rows: [],
+      client: {},
     });
     expect(spy).to.have.been.calledOnce;
-    expect(output(spy)).to.match(/SQL \(\d\.\dms~0rows\) select 1 \[\]/);
+    expect(output(spy)).to.match(/SQL \(\d\.\dms@\d~0rows\) select 1 \[\]/);
   });
 
   it('logs on error event', function() {
