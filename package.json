@@ -31,7 +31,7 @@
     "lodash": "^3.6.0"
   },
   "peerDependencies": {
-    "azul": "^0.0.1-alpha.9"
+    "azul": "^0.0.1-alpha.14"
   },
   "devDependencies": {
     "chai": "^2.3.0",
